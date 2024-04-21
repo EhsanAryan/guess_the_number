@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="header">
+        <span>
+            <button type="button" class="again-btn">AGAIN!</button>
+            <span>(or press "r")</span>
+        </span>
+        <span> &lt;Between 1 and 20&gt;</span>
+    </div>
+    <div class="description">
+       Guess my number!
+    </div>
+    <div class="divider">
+        <div class="line"></div>
+        <div class="box">?</div>
+        <div class="line"></div>
+    </div>
+    <div class="score-section">
+        <div class="left">
+            <input type="number" id="number" name="number" class="number-input" min="1" max="20" autofocus autocomplete="off" />
+            <button type="button" class="submit-btn">Check!</button>
+        </div>
+        <div class="right">
+            <span class="guid-span">Start guessing...</span>
+            <span class="score-span">🎯 Your score: 
+                <span class="score">20</span>
+            </span>
+            <span class="high-span">💯 High score: 
+                <span class="high">0</span>
+            </span>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>
