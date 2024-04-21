@@ -40,17 +40,24 @@ submitBtn.addEventListener("click", () => {
         }
     } else {
         scoreElement.innerHTML = Number(scoreElement.innerHTML) - 1;
-        if (userNumber > selectedNumber) {
-            if (userNumber - selectedNumber >= 5) {
-                guidSpan.innerHTML = "Too high!";
-            } else {
-                guidSpan.innerHTML = "High!";
-            }
+        if (Number(scoreElement.innerHTML) === 0) {
+            document.body.style.backgroundColor = "#c11";
+            guidSpan.innerHTML = "You lost!";
+            numberInput.disabled = true;
+            submitBtn.disabled = true;
         } else {
-            if (selectedNumber - userNumber >= 5) {
-                guidSpan.innerHTML = "Too low!";
+            if (userNumber > selectedNumber) {
+                if (userNumber - selectedNumber >= 5) {
+                    guidSpan.innerHTML = "Too high!";
+                } else {
+                    guidSpan.innerHTML = "High!";
+                }
             } else {
-                guidSpan.innerHTML = "Low!";
+                if (selectedNumber - userNumber >= 5) {
+                    guidSpan.innerHTML = "Too low!";
+                } else {
+                    guidSpan.innerHTML = "Low!";
+                }
             }
         }
     }
