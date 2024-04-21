@@ -23,12 +23,12 @@ againBtn.addEventListener("click", () => {
 submitBtn.addEventListener("click", () => {
     if (!numberInput.value.length) {
         guidSpan.innerHTML = "Enter a number!";
-        return;
+        return numberInput.focus();
     }
     const userNumber = Number(numberInput.value);
     if (userNumber < 1 || userNumber > 20) {
         guidSpan.innerHTML = "Consider the range!";
-        return;
+        return numberInput.focus();
     }
     if (userNumber === selectedNumber) {
         document.body.style.backgroundColor = "#1c1";
@@ -41,19 +41,20 @@ submitBtn.addEventListener("click", () => {
     } else {
         scoreElement.innerHTML = Number(scoreElement.innerHTML) - 1;
         if (userNumber > selectedNumber) {
-            if(userNumber - selectedNumber >= 5) {
+            if (userNumber - selectedNumber >= 5) {
                 guidSpan.innerHTML = "Too high!";
             } else {
                 guidSpan.innerHTML = "High!";
             }
         } else {
-            if(selectedNumber - userNumber >= 5) {
+            if (selectedNumber - userNumber >= 5) {
                 guidSpan.innerHTML = "Too low!";
             } else {
                 guidSpan.innerHTML = "Low!";
             }
         }
     }
+    numberInput.focus();
 });
 
 numberInput.addEventListener("keydown", (ev) => {
