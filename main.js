@@ -3,7 +3,7 @@
 // variables
 let userScore = 20;
 let highScore = localStorage.getItem("guessGameHighScore") ? Number(localStorage.getItem("guessGameHighScore")) : 0;
-let selectedNumber = (Math.round((Math.random() * 1024 * 2048)) % 20) + 1;
+let secretNumber = (Math.round((Math.random() * 1024 * 2048)) % 20) + 1;
 
 // elements
 const againBtn = document.querySelector(".again-btn");
@@ -12,19 +12,21 @@ const numberInput = document.querySelector(".number-input");
 const guidSpan = document.querySelector(".guid-span");
 const scoreElement = document.querySelector(".score");
 const highElement = document.querySelector(".high");
+const boxElement = document.querySelector(".box");
 
 scoreElement.innerHTML = userScore;
 highElement.innerHTML = highScore;
 
 
 againBtn.addEventListener("click", () => {
-    selectedNumber = (Math.round((Math.random() * 1024 * 2048)) % 20) + 1;
+    secretNumber = (Math.round((Math.random() * 1024 * 2048)) % 20) + 1;
     document.body.style.backgroundColor = "#222";
     numberInput.value = "";
     numberInput.disabled = false;
     submitBtn.disabled = false;
     userScore = 20;
     scoreElement.innerHTML = 20;
+    boxElement.innerHTML = "?";
     guidSpan.innerHTML = "Start guessing...";
     numberInput.focus();
 });
@@ -39,9 +41,10 @@ submitBtn.addEventListener("click", () => {
         guidSpan.innerHTML = "⛔ Consider the range!";
         return numberInput.focus();
     }
-    if (userNumber === selectedNumber) {
+    if (userNumber === secretNumber) {
         document.body.style.backgroundColor = "#1c1";
         guidSpan.innerHTML = "🎉 Correct!";
+        boxElement.innerHTML = secretNumber;
         numberInput.disabled = true;
         submitBtn.disabled = true;
         if (userScore > highScore) {
@@ -57,14 +60,14 @@ submitBtn.addEventListener("click", () => {
             numberInput.disabled = true;
             submitBtn.disabled = true;
         } else {
-            if (userNumber > selectedNumber) {
-                if (userNumber - selectedNumber >= 5) {
+            if (userNumber > secretNumber) {
+                if (userNumber - secretNumber >= 5) {
                     guidSpan.innerHTML = "📈 Too high!";
                 } else {
                     guidSpan.innerHTML = "📈 High!";
                 }
             } else {
-                if (selectedNumber - userNumber >= 5) {
+                if (secretNumber - userNumber >= 5) {
                     guidSpan.innerHTML = "📉 Too low!";
                 } else {
                     guidSpan.innerHTML = "📉 Low!";
